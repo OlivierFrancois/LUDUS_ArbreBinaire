@@ -1,7 +1,7 @@
 #ifndef TREE_H_INCLUDED
 #define TREE_H_INCLUDED
 
-//Structure contenant les arbre
+//Structure contenant les arbres
 typedef struct Tree
 {
 	int value;
