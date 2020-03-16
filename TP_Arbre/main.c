@@ -15,7 +15,7 @@ int main()
 			 G  H  I
 	*/
 
-	printf("Construction d'un arbre");
+	printf("___________Constructions d'arbres\n");
 	Tree *tree_I = CreateTree('I', NULL, NULL);
 	Tree *tree_H = CreateTree('H', NULL, tree_I);
 	Tree *tree_G = CreateTree('G', NULL, tree_H);
@@ -29,6 +29,13 @@ int main()
 	Tree *tree_B = CreateTree('B', tree_D, tree_C);
 
 	Tree *tree_A = CreateTree('A', tree_B, NULL);
+	printf("Arbres crees !\n");
+
+	printf("\n___________Test de la fonction de taille\n");
+	printf("Taille de l'arbre F : %d\n", TreeSize(tree_F));
+	printf("Taille de l'arbre A : %d\n", TreeSize(tree_A));
+	printf("Taille de l'arbre B : %d\n", TreeSize(tree_B));
+	printf("Taille de l'arbre G : %d\n", TreeSize(tree_G));
 
 	return 0;
 }

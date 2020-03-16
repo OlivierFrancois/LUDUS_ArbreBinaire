@@ -13,5 +13,6 @@ typedef struct Tree
 }Tree;
 
 extern Tree *CreateTree(char value, Tree *child, Tree *sibling);
+extern int TreeSize(Tree *node);
 
 #endif // TREE_H_INCLUDED
