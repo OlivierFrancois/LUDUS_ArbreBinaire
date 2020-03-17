@@ -37,5 +37,11 @@ int main()
 	printf("Taille de l'arbre B : %d\n", TreeSize(tree_B));
 	printf("Taille de l'arbre G : %d\n", TreeSize(tree_G));
 
+	printf("\n___________Test de la fonction de hauteur\n");
+	printf("Hauteur de l'arbre F : %d\n", TreeHeight(tree_F));
+	printf("Hauteur de l'arbre A : %d\n", TreeHeight(tree_A));
+	printf("Hauteur de l'arbre B : %d\n", TreeHeight(tree_B));
+	printf("Hauteur de l'arbre G : %d\n", TreeHeight(tree_G));
+
 	return 0;
 }

@@ -24,7 +24,7 @@ int TreeSize(Tree *node)
 	if (node == NULL)
 	{
 		printf("ERREUR ARBRE VIDE\n");
-		return -1000;
+		return -1;
 	}
 
 	int count = 1;
@@ -40,4 +40,34 @@ int TreeSize(Tree *node)
 	}
 
 	return count;
+}
+
+int TreeHeight(Tree *node)
+//Renvoie la hauteur (nombre de noeud séparant la racine du bout de l'arbre), en incluant le noeud actuel (la hauteur d'une feuille est donc 1).
+{
+	if (node == NULL)
+	{
+		printf("ERREUR ARBRE VIDE\n");
+		return -1;
+	}
+
+	int currentHeight = 1; //Hauteur retenue dans ce passage de la fonction.
+	int heightMax = 0; //Stockera la plus grande hauteur
+
+	Tree *currentNode = node->child; //On part de l'enfant du noeud donné en paramètre puis on parcours ses frères.
+	while (currentNode != NULL)
+	{
+		int tempHeight = TreeHeight(currentNode); //Appel récursif de la fonction pour aller vers l'enfant du noeud courant.
+		//Si la récursivité s'est répétée assez de fois,
+		//tempHeight (qui finalement compte le nombre de fois où la fonction arrive à rentrer dans un enfant)
+		//contient un nombre plus grand que heightMax puisque heightMax est la hauteur maximale rencontrée jusque là)
+		if (tempHeight > heightMax)
+			heightMax = tempHeight;
+
+		currentNode = currentNode->sibling; //Passage au frère du noeud
+	}
+
+	currentHeight += heightMax; //On incrémente currentHeight avec la valeur de heightMax retenue
+
+	return (currentHeight);
 }
