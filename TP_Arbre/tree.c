@@ -18,6 +18,7 @@ Tree *CreateTree(char value, Tree *child, Tree *sibling)
 	return tempTree;
 }
 
+
 void ClearTree(Tree *treeToClear)
 //Vide l'arbre pass√© en param√®tre et lib√®re la m√©moire de ce dernier.
 {
@@ -50,32 +51,26 @@ void ClearTree(Tree *treeToClear)
 	free(treeToClear);
 }
 
-void InsertFirstChild(Tree *newNode, Tree *parentNode)
-//Ins√©rer l'arbre newNode en tant qu'enfant de l'arbre parentNode
-{
-	if (newNode == NULL || parentNode == NULL)
-	{
-		printf("ERREUR : un des deux arbres est vide\n");
-		return NULL;
-	}
 
-	newNode->sibling = parentNode->child; //L'enfant actuel de parentNode devient le fr√®re de newNode
-	parentNode->child = newNode;	//newNode devient l'enfant de parentNode
+//**********************************************************
+//Description : Insertion en tant que premier enfant dans un arbre
+//Entree : L'arbre parent
+//         Nouveau premier enfant
+//Sortie :
+//**********************************************************
+void InsertFirstChildToParent(Tree *parent, Tree *newChild)
+{
+    if (parent == NULL)
+        return NULL;
+
+    if (parent->child != NULL)
+        newChild->sibling = parent->child;
+
+    parent->child = newChild;
 }
 
-/*void RemoveFirstChild(Tree *parentNode)
-{
-	if (parentNode == NULL)
-	{
-		printf("ERREUR : l'arbres n'a pas d'enfants\n");
-		return NULL;
-	}
 
-
-}*/
-
-
-int TreeSize(Tree *node)
+int GetTreeSize(Tree *node)
 //Renvoie la taille (nombre de noeuds) d'un arbre √† partir du noeud donn√© en comptant la racine.
 {
 	if (node == NULL)
@@ -92,39 +87,48 @@ int TreeSize(Tree *node)
 	Tree *currentNode = node->child;
 	while (currentNode != NULL)
 	{
-		count += TreeSize(currentNode);
+		count += GetTreeSize(currentNode);
 		currentNode = currentNode->sibling;
 	}
 
 	return count;
 }
 
-int TreeHeight(Tree *node)
-//Renvoie la hauteur (nombre de noeud s√©parant la racine du bout de l'arbre), en incluant le noeud actuel (la hauteur d'une feuille est donc 1).
+//**********************************************************
+//Description : RÈcupËre la hauteur de l'arbre (la distance entre la racine et le noeud le plus ÈloignÈ de la racine)
+//Entree : L'arbre
+//Sortie : La hauteur
+//**********************************************************
+int GetTreeHeight(Tree *pTree)
 {
-	if (node == NULL)
-	{
-		printf("ERREUR ARBRE VIDE\n");
-		return -1;
-	}
+    if (pTree == NULL)
+        return 0;
 
-	int currentHeight = 1; //Hauteur retenue dans ce passage de la fonction.
-	int heightMax = 0; //Stockera la plus grande hauteur
+    int nHeight = 1;
+    int nDistanceMax = 0; //la plus grande hauteur stockÈe parmis les diffÈrents frËres
 
-	Tree *currentNode = node->child; //On part de l'enfant du noeud donn√© en param√®tre puis on parcours ses fr√®res.
-	while (currentNode != NULL)
-	{
-		int tempHeight = TreeHeight(currentNode); //Appel r√©cursif de la fonction pour aller vers l'enfant du noeud courant.
-		//Si la r√©cursivit√© s'est r√©p√©t√©e assez de fois,
-		//tempHeight (qui finalement compte le nombre de fois o√π la fonction arrive √† rentrer dans un enfant)
-		//contient un nombre plus grand que heightMax puisque heightMax est la hauteur maximale rencontr√©e jusque l√†)
-		if (tempHeight > heightMax)
-			heightMax = tempHeight;
+    Tree *currentChild;
 
-		currentNode = currentNode->sibling; //Passage au fr√®re du noeud
-	}
+    //Pour noeud courant, jusqu'‡ ce que le noeud n'existe pas, aller de frËre en frËre
+    //Evaluer ‡ chaque fois si la hauteur du noeud courant est supÈrieur ‡ la distance stockÈe
+    for (currentChild = pTree->child; currentChild != NULL; currentChild = currentChild->sibling)
+    {
+        int nTemp = GetTreeHeight(currentChild);
+        if (nTemp > nDistanceMax )
+            nDistanceMax = nTemp;
+    }
 
-	currentHeight += heightMax; //On incr√©mente currentHeight avec la valeur de heightMax retenue
-
-	return (currentHeight);
+    nHeight += nDistanceMax;
+    return nHeight;
 }
+
+/*
+void insertChildToParent(Tree *parent, Tree *newChild, int nPos);
+
+void removeFirstChildFromParent(*Tree *parent);
+void removeChildFromParent(*Tree *parent, int nPos);
+
+void clearTree(Tree *pTree);
+
+void lisTreeChild(Tree *pTree);
+*/
