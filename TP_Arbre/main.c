@@ -43,5 +43,10 @@ int main()
 	printf("Hauteur de l'arbre B : %d\n", TreeHeight(tree_B));
 	printf("Hauteur de l'arbre G : %d\n", TreeHeight(tree_G));
 
+	printf("\n___________Test de la fonction de clear\n");
+	printf("Taille de l'arbre A avant clear d'une feuille : %d\n", TreeSize(tree_A));
+	ClearTree(tree_F);
+	printf("Taille de l'arbre A apres clear d'une feuille : %d\n", TreeSize(tree_A));
+
 	return 0;
 }

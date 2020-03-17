@@ -18,6 +18,63 @@ Tree *CreateTree(char value, Tree *child, Tree *sibling)
 	return tempTree;
 }
 
+void ClearTree(Tree *treeToClear)
+//Vide l'arbre passé en paramètre et libère la mémoire de ce dernier.
+{
+	if (treeToClear == NULL)
+	{
+		printf("ERREUR : l'arbre est deja vide !\n");
+		return NULL;
+	}
+
+	Tree *tempTree = treeToClear;
+	//Si un enfant existe, on se place sur ce dernier.
+	if (tempTree->child != NULL)
+		tempTree = tempTree->child;
+
+	while (tempTree != NULL)
+	{
+		//Si tempTree possède un frère, on relance la fonction avec ce dernier
+		if (tempTree->sibling != NULL)
+			ClearTree(tempTree->sibling);
+
+		break; //Permet de sortir de la boucle une fois que l'on est arrivé sur un arbre ne psosédant ni frère ni enfant.
+	}
+
+	//Vidage de l'arbre
+	treeToClear->child = NULL;
+	treeToClear->sibling = NULL;
+	treeToClear = NULL;
+
+	//Libération de la mémoire
+	free(treeToClear);
+}
+
+void InsertFirstChild(Tree *newNode, Tree *parentNode)
+//Insérer l'arbre newNode en tant qu'enfant de l'arbre parentNode
+{
+	if (newNode == NULL || parentNode == NULL)
+	{
+		printf("ERREUR : un des deux arbres est vide\n");
+		return NULL;
+	}
+
+	newNode->sibling = parentNode->child; //L'enfant actuel de parentNode devient le frère de newNode
+	parentNode->child = newNode;	//newNode devient l'enfant de parentNode
+}
+
+/*void RemoveFirstChild(Tree *parentNode)
+{
+	if (parentNode == NULL)
+	{
+		printf("ERREUR : l'arbres n'a pas d'enfants\n");
+		return NULL;
+	}
+
+
+}*/
+
+
 int TreeSize(Tree *node)
 //Renvoie la taille (nombre de noeuds) d'un arbre à partir du noeud donné en comptant la racine.
 {

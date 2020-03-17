@@ -13,6 +13,8 @@ typedef struct Tree
 }Tree;
 
 extern Tree *CreateTree(char value, Tree *child, Tree *sibling);
+extern void ClearTree(Tree *treeToClear);
+
 extern int TreeSize(Tree *node);
 extern int TreeHeight(Tree *node);
 
