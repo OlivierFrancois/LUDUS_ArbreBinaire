@@ -1,6 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
-
+#include "binarytree.h"
 #include "tree.h"
 
 int main()
@@ -15,7 +13,7 @@ int main()
 			  / | \
 			 G  H  I
 	*/
-
+	printf("\n_________________________Fonction n-aire_________________________\n");
 	printf("___________Constructions d'arbres\n");
 	Tree *tree_I = CreateTree('I', NULL, NULL);
 	Tree *tree_H = CreateTree('H', NULL, tree_I);
@@ -56,5 +54,21 @@ int main()
 	ClearTree(tree_F);
 	printf("Taille de l'arbre A apres clear d'une feuille : %d\n", GetTreeSize(tree_A));
 
-	return 0;
+
+	printf("\n_________________________Fonction Binaire_________________________\n");
+	printf("___________Constructions d'arbres et jointure\n");
+    BinaryTree *binaryTree = JoinTree(CreateBinaryTree(2), CreateBinaryTree(4), 6);
+    printf("Arbres crees !\n\n");
+
+    printf("___________Affichage d'arbres\n");
+    DisplayBinaryTree(binaryTree);
+
+    printf("\n___________Test de la fonction de taille\n");
+    printf("L'arbre a %d noeuds\n\n", GetBinaryTreeSize(binaryTree));
+
+    printf("\n___________Test de la fonction de clear\n");
+    ClearBinaryTree(binaryTree);
+    printf("Arbre clear\n");
+
+    return 0;
 }
