@@ -24,10 +24,13 @@ void ClearBinaryTree(BinaryTree *tree)
 	if (tree == NULL)
 		return;
 	//sinon on appelle la fonction de manière récursive sur l'arbre gauche de l'arbre en question
-	ClearBinaryTree(tree->left);
+	if (tree->left!=NULL)
+		ClearBinaryTree(tree->left);
 	//puis le droit
-	ClearBinaryTree(tree->right);
+	if (tree->right!=NULL)
+		ClearBinaryTree(tree->right);
 	//et du coup on free l'arbre
+	
 	free(tree);
 }
 
