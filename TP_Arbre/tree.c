@@ -1,7 +1,7 @@
 #include "tree.h"
 
 Tree *CreateTree(char value, Tree *child, Tree *sibling)
-//Créer un arbre à partir des paramètres passés.
+//Creer un arbre a� partir des parametres passes.
 {
 	Tree *tempTree = malloc(sizeof(*tempTree));
 
@@ -20,7 +20,7 @@ Tree *CreateTree(char value, Tree *child, Tree *sibling)
 
 
 void ClearTree(Tree *treeToClear)
-//Vide l'arbre passé en paramètre et libère la mémoire de ce dernier.
+//Vide l'arbre passe en parametre et libere la memoire de ce dernier.
 {
 	if (treeToClear == NULL)
 	{
@@ -35,11 +35,11 @@ void ClearTree(Tree *treeToClear)
 
 	while (tempTree != NULL)
 	{
-		//Si tempTree possède un frère, on relance la fonction avec ce dernier
+		//Si tempTree possede un frere, on relance la fonction avec ce dernier
 		if (tempTree->sibling != NULL)
 			ClearTree(tempTree->sibling);
 
-		break; //Permet de sortir de la boucle une fois que l'on est arrivé sur un arbre ne psosédant ni frère ni enfant.
+		break; //Permet de sortir de la boucle une fois que l'on est arrive sur un arbre ne psosedant ni frere ni enfant.
 	}
 
 	//Vidage de l'arbre
@@ -47,7 +47,7 @@ void ClearTree(Tree *treeToClear)
 	treeToClear->sibling = NULL;
 	treeToClear = NULL;
 
-	//Libération de la mémoire
+	//Liberation de la memoire
 	free(treeToClear);
 }
 
@@ -56,7 +56,6 @@ void ClearTree(Tree *treeToClear)
 //Description : Insertion en tant que premier enfant dans un arbre
 //Entree : L'arbre parent
 //         Nouveau premier enfant
-//Sortie :
 //**********************************************************
 void InsertFirstChildToParent(Tree *parent, Tree *newChild)
 {
@@ -71,7 +70,7 @@ void InsertFirstChildToParent(Tree *parent, Tree *newChild)
 
 
 int GetTreeSize(Tree *node)
-//Renvoie la taille (nombre de noeuds) d'un arbre à partir du noeud donné en comptant la racine.
+//Renvoie la taille (nombre de noeuds) d'un arbre a� partir du noeud donne en comptant la racine.
 {
 	if (node == NULL)
 	{
@@ -81,9 +80,9 @@ int GetTreeSize(Tree *node)
 
 	int count = 1;
 
-	//Boucle récursive. Part du premier enfant du noeud actuel.
-	//Si cet enfant existe, on incrémente avec la taille de l'arbre partant de cet enfant puis on regarde le frère de cet enfant.
-	//Si le frère n'existe pas, on remonte d'un niveau dans l'arbre puis on itère jusqu'à parcourir tout l'arbre.
+	//Boucle recursive. Part du premier enfant du noeud actuel.
+	//Si cet enfant existe, on incremente avec la taille de l'arbre partant de cet enfant puis on regarde le frere de cet enfant.
+	//Si le frere n'existe pas, on remonte d'un niveau dans l'arbre puis on itere jusqu'a� parcourir tout l'arbre.
 	Tree *currentNode = node->child;
 	while (currentNode != NULL)
 	{
@@ -93,6 +92,7 @@ int GetTreeSize(Tree *node)
 
 	return count;
 }
+
 
 //**********************************************************
 //Description : R�cup�re la hauteur de l'arbre (la distance entre la racine et le noeud le plus �loign� de la racine)
@@ -123,12 +123,27 @@ int GetTreeHeight(Tree *pTree)
 }
 
 /*
-void insertChildToParent(Tree *parent, Tree *newChild, int nPos);
+void insertChildToParent(Tree *parent, Tree *newChild, int nPos)
+{
 
-void removeFirstChildFromParent(*Tree *parent);
-void removeChildFromParent(*Tree *parent, int nPos);
+}
 
-void clearTree(Tree *pTree);
+void removeFirstChildFromParent(*Tree *parent)
+{
 
-void lisTreeChild(Tree *pTree);
-*/
+}
+
+void removeChildFromParent(*Tree *parent, int nPos)
+{
+
+}
+
+void clearTree(Tree *pTree)
+{
+
+}
+
+void lisTreeChild(Tree *pTree)
+{
+
+}*/
