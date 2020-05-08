@@ -106,7 +106,6 @@ int GetTreeHeight(Tree *pTree)
 
     int nHeight = 1;
     int nDistanceMax = 0; //la plus grande hauteur stockée parmis les différents frères
-
     Tree *currentChild;
 
     //Pour noeud courant, jusqu'à ce que le noeud n'existe pas, aller de frère en frère
@@ -122,28 +121,166 @@ int GetTreeHeight(Tree *pTree)
     return nHeight;
 }
 
-/*
-void insertChildToParent(Tree *parent, Tree *newChild, int nPos)
+//**********************************************************
+//Description : Inserer un frere à une position dans l'arbre
+//Entree : L'arbre
+//         Le frere a inserer
+//         Position dans l'arbre
+//Sortie :
+//**********************************************************
+void InsertSiblingToParent(Tree *parent, Tree *newSibling, int nPos)
 {
+    if (parent == NULL)
+        return NULL;
 
+    if (nPos > 1)
+    {
+        int i;
+        Tree *currentSibling;
+
+        currentSibling = parent->child;
+        for (i=1;i<nPos-1;i++)
+        {
+            currentSibling = currentSibling->sibling;
+        }
+        newSibling->sibling = currentSibling->sibling;
+        currentSibling->sibling = newSibling;
+    }
+    else if (nPos == 1)
+    {
+        InsertFirstChildToParent(parent, newSibling);
+    }
 }
 
-void removeFirstChildFromParent(*Tree *parent)
+//**********************************************************
+//Description : Enlever le premier enfant de l'arbre
+//Entree : L'arbre
+//Sortie :
+//**********************************************************
+void RemoveFirstChildFromParent(Tree *parent)
 {
+    if (parent == NULL)
+        return NULL;
 
+    Tree *firstChild;
+    firstChild = parent->child;
+    parent->child = firstChild->sibling;
+
+    free(firstChild);
 }
 
-void removeChildFromParent(*Tree *parent, int nPos)
+//**********************************************************
+//Description : Enlever un enfant à une position dans l'arbre
+//Entree : L'arbre
+//         La position
+//Sortie :
+//**********************************************************
+void RemoveChildFromParent(Tree *parent, int nPos)
 {
+    if (parent == NULL)
+        return NULL;
 
+    if (nPos > 1)
+    {
+        int i;
+        Tree *currentSibling;
+        Tree *previousSibling;
+
+        currentSibling = parent->child;
+        for (i=1;i<nPos;i++)
+        {
+            previousSibling = currentSibling;
+            currentSibling = currentSibling->sibling;
+        }
+        previousSibling->sibling = currentSibling->sibling;
+
+        free(currentSibling);
+
+    }
+    else if (nPos == 1)
+    {
+        RemoveFirstChildFromParent(parent);
+    }
+}
+//**********************************************************
+//Description : Recherche en profondeur d'une valeur dans l'arbre
+//Entree : L'arbre
+//         La valeur cherchee
+//Sortie : 1 si la valeur a ete trouvee, sinon 0
+//**********************************************************
+int DepthFirstSearchTree(Tree *tree,char value)
+{
+    if (tree == NULL)
+        return 0;
+
+    int isFound = 0;
+    if (tree->value == value)
+        isFound = 1;
+
+    Tree *currentChild = tree->child;
+
+    while (currentChild != NULL && !isFound)
+    {
+        if (currentChild->value == value)
+        {
+            isFound = 1;
+        }
+        else
+        {
+            isFound = DepthFirstSearchTree(currentChild,value);
+            currentChild = currentChild->sibling;
+        }
+    }
+    return isFound;
 }
 
-void clearTree(Tree *pTree)
+//**********************************************************
+//Description : Recherche en largeur d'une valeur dans l'arbre
+//Entree : L'arbre
+//         La valeur cherchee
+//Sortie : 1 si la valeur a ete trouvee, sinon 0
+//**********************************************************
+int BreadthFirstSearchTree(Tree *tree, char value)
 {
+    int isFound = 0;
+    tFile* file = initialiserFile();
+    enfiler(file,tree);
+    while (file->pPremier != NULL && !isFound) {
+        Tree *noeud = defiler(file);
 
+        /* Visualiser l'ordre
+        if (noeud != NULL)
+            printf("%c",noeud->value);
+        */
+
+        if (noeud->value == value)
+            isFound=1;
+
+        if (noeud->sibling != NULL)
+            enfiler(file,noeud->sibling);
+
+        if (noeud->child != NULL)
+            enfiler(file,noeud->child);
+    }
+
+    return isFound;
 }
 
-void lisTreeChild(Tree *pTree)
+void ListTreeChild(Tree* tree)
+//Affiche la valeur de la racine et des enfants
 {
+	if (tree == NULL)
+	{
+		printf("ERREUR ARBRE VIDE\n");
+		exit(0);
+	}
+    printf("%c ",tree->value);
 
-}*/
+	Tree *currentNode = tree->child;
+	while (currentNode != NULL)
+	{
+		ListTreeChild(currentNode);
+		currentNode = currentNode->sibling;
+	}
+}
+
