@@ -243,9 +243,9 @@ int DepthFirstSearchTree(Tree *tree,char value)
 int BreadthFirstSearchTree(Tree *tree, char value)
 {
     int isFound = 0;
-    tFile* file = initialiserFile();
+    File* file = initialiserFile();
     enfiler(file,tree);
-    while (file->pPremier != NULL && !isFound) {
+    while (file->first != NULL && !isFound) {
         Tree *noeud = defiler(file);
 
         /* Visualiser l'ordre

@@ -1,71 +1,71 @@
 #include "file.h"
 
-tFile *initialiserFile()
+File *initialiserFile()
 {
-    tFile *pFile = malloc(sizeof(*pFile));
-    pFile->pPremier = NULL;
-    return pFile;
+    File *file = malloc(sizeof(*file));
+    file->first = NULL;
+    return file;
 }
 
-void enfiler(tFile *pFile, Tree *tree)
+void enfiler(File *file, Tree *tree)
 {
-    tElementFile *pNouveau = malloc(sizeof(*pNouveau));
-    if (pFile == NULL || pNouveau == NULL)
+    ElementFile *new = malloc(sizeof(*new));
+    if (file == NULL || new == NULL)
     {
         exit(EXIT_FAILURE);
     }
 
-    pNouveau->noeud = tree;
-    pNouveau->pSuivant = NULL;
+    new->tree = tree;
+    new->next = NULL;
 
-    if (pFile->pPremier != NULL) /* La file n'est pas vide */
+    if (file->first != NULL) /* La file n'est pas vide */
     {
         /* On se positionne à la fin de la file */
-        tElementFile *pActuel = pFile->pPremier;
-        while (pActuel->pSuivant != NULL)
+        ElementFile *current = file->first;
+        while (current->next != NULL)
         {
-            pActuel = pActuel->pSuivant;
+            current = current->next;
         }
-        pActuel->pSuivant = pNouveau;
+        current->next = new;
     }
-    else /* La file est vide, notre élément est le pPremier */
+    else /* La file est vide, notre élément est le first */
     {
-        pFile->pPremier = pNouveau;
+        file->first = new;
     }
 }
 
-struct Tree* defiler(tFile *pFile)
+struct Tree* defiler(File *file)
 {
-    if (pFile == NULL)
+    if (file == NULL)
     {
         exit(EXIT_FAILURE);
     }
     Tree* nDefile;
 
     /* On vérifie s'il y a quelque chose à défiler */
-    if (pFile->pPremier != NULL)
+    if (file->first != NULL)
     {
-        tElementFile *pDefile = pFile->pPremier;
+        ElementFile *defile = file->first;
 
-        nDefile = pDefile->noeud;
-        pFile->pPremier = pDefile->pSuivant;
-        free(pDefile);
+        nDefile = defile->tree;
+        file->first = defile->next;
+        free(defile);
     }
     return nDefile;
 }
 
-void afficherFile(tFile *pFile)
+void afficherFile(File *file)
 //BUT : Afficher les valeurs de la file.
 {
-    if (pFile == NULL)
+    if (file == NULL)
     {
         exit(EXIT_FAILURE);
     }
-    tElementFile *pActuel = pFile->pPremier;
-    while (pActuel != NULL)
+    ElementFile *current = file->first;
+    while (current != NULL)
     {
-        printf("%d ", pActuel->noeud->value);
-        pActuel = pActuel->pSuivant;
+        printf("%d ", current->tree->value);
+        current = current->next;
     }
     printf("\n");
 }

@@ -6,24 +6,24 @@
 
 #include "tree.h"
 
-typedef struct tElementFile tElementFile;
-struct tElementFile
+typedef struct ElementFile ElementFile;
+struct ElementFile
 {
-    struct Tree *noeud;
-    tElementFile *pSuivant;
+    struct Tree *tree;
+    ElementFile *next;
 };
 
 
-typedef struct tFile tFile;
-struct tFile
+typedef struct File File;
+struct File
 {
-    tElementFile *pPremier;
+    ElementFile *first;
 };
 
-extern tFile *initialiserFile();
-extern void enfiler(tFile *pFile, struct Tree *noeud);
-extern struct Tree* defiler(tFile *pFile);
-extern void afficherFile(tFile *pFile);
+extern File *initialiserFile();
+extern void enfiler(File *file, struct Tree *tree);
+extern struct Tree* defiler(File *file);
+extern void afficherFile(File *File);
 
 
 #endif // FILE_H_INCLUDED
