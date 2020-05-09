@@ -1,17 +1,22 @@
 # LUDUS_ArbreBinaire
-TP réalisé en Algo, LUDUS, F2, 2019-2020 sur les arbres
+TP realise en Algo, LUDUS, F2, 2019-2020 sur les arbres
 
+
+NOMENCLATURE A ADOPTER :
+VARIABLE
+-> camelCase : on preferera des noms de variables comme "currentNode" plutot que "current_node", "str_Current_Node" etc.
+-> nom de variables en anglais de préférence
+
+FONCTION :
+-> camelCase avec une majuscule : "GetTreeSize()" plutot que "getTreeSize()"...
+-> Essayez de preciser dans le nom de la fonction si vous manipulez un arbre n-aire ou un arbre binaire (GetBinaryTreeSize() / GetTreeSize() )
+
+COMMENTAIRE :
+En francais.
+L'encodage chez certaines personnes ne fonctionne pas ; dans le doute essayez de ne pas mettre de caracteres speciaux.
+
+____________________________
 
 TO DO :
--Rendu documentation (avec suite office365)
-	-> Analyse structurée sur l'intégralité de chaque travail de recherche
--Fournir aussi bien l'algorithme que les programmes associés aux exemples
--Répartir le travail en module. Chaque membre du groupe aura sa propre branche. Le lead décide ensuite de si on peut merge ou pas sur la branche principale.
-
-
-ARBORESCENCE :
-(cf graphique)
-
-TIPS :
--Toujours faire une copie de niveau (n-1) de la branche principale pour éviter les catastrophes.
--liker fortnite
+-> Chacun continue sur sa lancee : Kevin, Fiona et Romain : binaire | Valentin et Olivier : n-aire
+-> L'ensemble de ce qui a ete traite dans cette version doit etre mis en forme dans la doc pour le prochain rendu : 07/04/2020

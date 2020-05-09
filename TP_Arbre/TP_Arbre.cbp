@@ -31,9 +31,23 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+<<<<<<< HEAD
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
+=======
+		<Unit filename="binarytree.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="binarytree.h" />
+		<Unit filename="main.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="tree.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="tree.h" />
+>>>>>>> default_branch
 		<Extensions>
 			<code_completion />
 			<envvars />
