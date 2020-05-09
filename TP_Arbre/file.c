@@ -34,7 +34,7 @@ void enfiler(File *file, Tree *tree)
     }
 }
 
-struct Tree* defiler(File *file)
+Tree* defiler(File *file)
 {
     if (file == NULL)
     {

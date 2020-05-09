@@ -21,8 +21,8 @@ struct File
 };
 
 extern File *initialiserFile();
-extern void enfiler(File *file, struct Tree *tree);
-extern struct Tree* defiler(File *file);
+extern void enfiler(File *file, Tree *tree);
+extern Tree* defiler(File *file);
 extern void afficherFile(File *File);
 
 

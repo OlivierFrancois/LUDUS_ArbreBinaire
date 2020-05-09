@@ -61,6 +61,10 @@ int main()
 	printf("Est-ce que la valeur 'I' se trouve dans l'arbre : %d\n",BreadthFirstSearchTree(tree_A,'I'));
 	printf("Est-ce que la valeur 'J' se trouve dans l'arbre : %d\n",BreadthFirstSearchTree(tree_A,'J'));
 
+    printf("\n___________Test de la fonction de binarisation\n");
+    BinaryTree *treeBinarised = BinarizeTree(tree_A);
+    DisplayBinaryTree(treeBinarised);
+
     printf("\n___________Test de la fonction de suppression d'enfant\n");
 	printf("Taile de l'arbre A avant suppression du premier enfant de F : %d\n", GetTreeSize(tree_A));
 	RemoveFirstChildFromParent(tree_F);

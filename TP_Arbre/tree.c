@@ -1,4 +1,6 @@
 #include "tree.h"
+#include "file.h"
+
 
 Tree *CreateTree(char value, Tree *child, Tree *sibling)
 //Creer un arbre a  partir des parametres passes.
@@ -284,3 +286,29 @@ void ListTreeChild(Tree* tree)
 	}
 }
 
+//**********************************************************
+//Description : Binariser un arbre n-aire
+//Entree : L'arbre n-aire
+//Sortie : Arbre binaire
+//**********************************************************
+BinaryTree* BinarizeTree(Tree* tree)
+{
+    if (tree == NULL)
+        return 0;
+
+    BinaryTree* binaryTree = CreateBinaryTree(tree->value);
+    if (tree->child != NULL)
+    {
+        binaryTree->left = BinarizeTree(tree->child);
+        binaryTree->left->parent = binaryTree;
+    }
+
+    if (tree->sibling != NULL)
+    {
+        binaryTree->right = BinarizeTree(tree->sibling);
+        binaryTree->right->parent = binaryTree;
+    }
+
+
+    return binaryTree;
+}
