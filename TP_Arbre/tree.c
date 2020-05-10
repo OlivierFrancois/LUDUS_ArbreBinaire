@@ -7,7 +7,9 @@ Tree *CreateTree(char value, Tree *child, Tree *sibling)
 
 	if (tempTree == NULL)
 	{
+		ChangeColor(color_Red, color_Black);
 		printf("ERREUR DANS L'ALLOCATION : l'arbre n'a pas pu etre cree.\n");
+		ChangeColor(color_White, color_Black);
 		return NULL;
 	}
 
@@ -24,7 +26,9 @@ void ClearTree(Tree *treeToClear)
 {
 	if (treeToClear == NULL)
 	{
+		ChangeColor(color_Red, color_Black);
 		printf("ERREUR : l'arbre est deja vide !\n");
+		ChangeColor(color_White, color_Black);
 		return NULL;
 	}
 
@@ -73,7 +77,10 @@ int GetTreeSize(Tree *node)
 {
 	if (node == NULL)
 	{
+		ChangeColor(color_Red, color_Black);
 		printf("ERREUR ARBRE VIDE\n");
+		ChangeColor(color_White, color_Black);
+
 		return -1;
 	}
 
@@ -125,7 +132,9 @@ void RemoveFirstChild(Tree *parent)
 {
 	if (parent == NULL)
 	{
+		ChangeColor(color_Red, color_Black);
 		printf("ERREUR : le parent passe en parametre n'existe pas !\n");
+		ChangeColor(color_White, color_Black);
 		return NULL;
 	}
 
@@ -178,7 +187,9 @@ void RemoveSibling(Tree *node)
 {
 	if (node == NULL)
 	{
+		ChangeColor(color_Red, color_Black);
 		printf("ERREUR : le noeud passe en parametre n'existe pas !\n");
+		ChangeColor(color_White, color_Black);
 		return NULL;
 	}
 
@@ -186,7 +197,9 @@ void RemoveSibling(Tree *node)
 
 	if (nodeToRemove == NULL)
 	{
+		ChangeColor(color_Red, color_Black);
 		printf("ERREUR : le noeud passe en parametre n'a pas de sibling !\n");
+		ChangeColor(color_White, color_Black);
 		return NULL;
 	}
 

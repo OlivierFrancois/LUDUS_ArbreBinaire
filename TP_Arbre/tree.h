@@ -3,6 +3,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include "style.h"
 
 //Structure d'arbre. Pointe vers le premier enfant (s'il existe) et le frère (s'il existe)
 typedef struct Tree
