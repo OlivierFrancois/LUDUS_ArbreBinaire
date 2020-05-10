@@ -57,14 +57,56 @@ int main()
 
 	printf("\n_________________________Fonction Binaire_________________________\n");
 	printf("___________Constructions d'arbres et jointure\n");
-    BinaryTree *binaryTree = JoinTree(CreateBinaryTree(2), CreateBinaryTree(4), 6);
+	//tableau d'entiers à partir duquel on va créer un arbre binaire
+	int arr[9] = {6,4,12,7,82,132,93,35,28};
+	int i = 0;
+	int arraySize = sizeof(arr) / sizeof(arr[0]);
+    BinaryTree *binaryTree = malloc(sizeof(*binaryTree));
+    binaryTree = CreateBinaryTreeFromArray(arr,binaryTree,0,arraySize);
+    printf("__________Affichage du tableau initial\n");
+    for (int i = 0; i < arraySize; i++)
+    {
+    	printf("%d\n", arr[i] );
+    }
+
+
     printf("Arbres crees !\n\n");
 
     printf("___________Affichage d'arbres\n");
     DisplayBinaryTree(binaryTree);
 
+    printf("___________Test de la fonction de recherche\n");
+    printf("Est-ce que la valeur 1 existe ? %d\n",SearchBinaryTree(binaryTree,1));
+    printf("Est-ce que la valeur 7 existe ? %d\n",SearchBinaryTree(binaryTree,7));
+
+    //tant qu'il ne reste pas 1 seul valeur dans le tableau
+   	while(arraySize-i != 1)
+   	{
+   		printf("___________Iteration numero %d de la boucle\n",i);
+   		//on récupère la valeur max dans le tableau, sachant qu'a chaque itération, passer arraySize-i car une fois qu'on a trié un chiffre, on ne veut pas le réincorporer dans la boucle
+	    int max = GetMaxValue(arr,arraySize-i);
+	    //tant que la valeur tout au dessus de l'arbre n'est pas égale à la valeur max, c'est à dire tant que l'on a pas créer un tas-max, on va rappeler la fonction CreateMaxHeap
+	    while (binaryTree->value != max)
+	    {
+	    	CreateMaxHeap(binaryTree, arr, arraySize-i);
+	    }
+	    //on inverse le premier et le dernier noeud
+	    InvertFirstAndLastNodeAndRemoveLastNode(binaryTree,arr,arraySize-i);
+	    //et on l'affiche
+	    DisplayBinaryTree(binaryTree);
+	    //et on incrémente i
+	    i++;
+	}
+
+    printf("__________Affichage du tableau apres tri \n");
+    for (int i = 0; i < arraySize; i++)
+    {
+    	printf("%d\n", arr[i] );
+    }
+
     printf("\n___________Test de la fonction de taille\n");
     printf("L'arbre a %d noeuds\n\n", GetBinaryTreeSize(binaryTree));
+
 
     printf("\n___________Test de la fonction de clear\n");
     ClearBinaryTree(binaryTree);
