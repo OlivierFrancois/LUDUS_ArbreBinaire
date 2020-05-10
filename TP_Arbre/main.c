@@ -13,7 +13,7 @@ int main()
 			  / | \
 			 G  H  I
 	*/
-	printf("\n_________________________Fonction n-aire_________________________\n");
+	printf("\n_________________________Fonctions n-aire_________________________\n");
 	printf("___________Constructions d'arbres\n");
 	Tree *tree_I = CreateTree('I', NULL, NULL);
 	Tree *tree_H = CreateTree('H', NULL, tree_I);
@@ -35,19 +35,33 @@ int main()
 	InsertFirstChildToParent(tree_B, tree_D);
 	InsertFirstChildToParent(tree_C, tree_F);
 	InsertFirstChildToParent(tree_F, tree_G);
+	printf("Done !\n");
+
+	printf("\n___________Test de la fonction de retrait d'enfant\n");
+	printf("Taille de l'arbre A avant retrait : %d\n", GetTreeSize(tree_A));
+	RemoveFirstChild(tree_A);
+	printf("Taille de l'arbre A apres suppression du noeud B : %d\n", GetTreeSize(tree_A));
+	RemoveFirstChild(tree_F);
+	printf("Taille de l'arbre A apres suppression du noeud G : %d\n", GetTreeSize(tree_A));
+
+	printf("\n___________Test de la fonction de retrait de sibling\n");
+	printf("Taille de l'arbre A avant retrait : %d\n", GetTreeSize(tree_A));
+	RemoveSibling(tree_H);
+	printf("Taille de l'arbre A apres suppression du sibling de H : %d\n", GetTreeSize(tree_A));
+
+	printf("Suppression d'un sibling inexistant : \n");
+	RemoveSibling(tree_C);
 
 
 	printf("\n___________Test de la fonction de taille\n");
 	printf("Taille de l'arbre F : %d\n", GetTreeSize(tree_F));
 	printf("Taille de l'arbre A : %d\n", GetTreeSize(tree_A));
-	printf("Taille de l'arbre B : %d\n", GetTreeSize(tree_B));
 	printf("Taille de l'arbre G : %d\n", GetTreeSize(tree_G));
 
 	printf("\n___________Test de la fonction de hauteur\n");
 	printf("Hauteur de l'arbre F : %d\n", GetTreeHeight(tree_F));
 	printf("Hauteur de l'arbre A : %d\n", GetTreeHeight(tree_A));
 	printf("Hauteur de l'arbre B : %d\n", GetTreeHeight(tree_B));
-	printf("Hauteur de l'arbre G : %d\n", GetTreeHeight(tree_G));
 
 	printf("\n___________Test de la fonction de clear\n");
 	printf("Taille de l'arbre A avant clear d'une feuille : %d\n", GetTreeSize(tree_A));
@@ -55,7 +69,7 @@ int main()
 	printf("Taille de l'arbre A apres clear d'une feuille : %d\n", GetTreeSize(tree_A));
 
 
-	printf("\n_________________________Fonction Binaire_________________________\n");
+	printf("\n_________________________Fonctions Binaire_________________________\n");
 	printf("___________Constructions d'arbres et jointure\n");
     BinaryTree *binaryTree = JoinTree(CreateBinaryTree(2), CreateBinaryTree(4), 6);
     printf("Arbres crees !\n\n");

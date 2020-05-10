@@ -54,8 +54,7 @@ void ClearTree(Tree *treeToClear)
 
 //**********************************************************
 //Description : Insertion en tant que premier enfant dans un arbre
-//Entree : L'arbre parent
-//         Nouveau premier enfant
+//Entree : L'arbre parent, le nouvel premier enfant
 //**********************************************************
 void InsertFirstChildToParent(Tree *parent, Tree *newChild)
 {
@@ -122,23 +121,109 @@ int GetTreeHeight(Tree *pTree)
     return nHeight;
 }
 
+void RemoveFirstChild(Tree *parent)
+{
+	if (parent == NULL)
+	{
+		printf("ERREUR : le parent passe en parametre n'existe pas !\n");
+		return NULL;
+	}
+
+	Tree *nodeToRemove = parent->child;
+
+	//On commence par faire pointer l'enfant du parent vers l'enfant de l'élément à retirer s'il existe
+	if (nodeToRemove->child != NULL)
+	{
+		parent->child = nodeToRemove->child;
+	}
+	//Sinon, si l'élément à retirer possède un sibling, ce dernier devient le child du parent et il n'y a rien d'autre à faire
+	else if (nodeToRemove->sibling != NULL)
+	{
+		parent->child = nodeToRemove->sibling;
+		nodeToRemove->sibling = NULL;
+		nodeToRemove->child = NULL;
+		return NULL;
+	}
+
+	//On associe maintenant les sibling.
+	//Dans l'exemple du main, l'idée est d'après avoir retirer B, faire pointer le sibling de E vers C.
+	//On commence par récupérer le noeud vers lequel on veut faire pointer :
+	Tree *siblingNode = nodeToRemove;
+	while (siblingNode->sibling != NULL)
+	{
+		siblingNode = siblingNode->sibling;
+	}
+
+	//Si ce noeud est différent de l'élément que l'on retire (ie si l'élément qu'on retire a bien au moins un sibling)
+	if (siblingNode != nodeToRemove)
+	{
+		//On récupére le noeud qu'on veut faire pointer :
+		Tree *nodeToLink = nodeToRemove->child;
+
+		while (nodeToLink->sibling != NULL)
+		{
+			nodeToLink = nodeToLink->sibling;
+		}
+
+		//On lie les deux noeuds
+		nodeToLink->sibling = siblingNode;
+	}
+
+	nodeToRemove->sibling = NULL;
+	nodeToRemove->child = NULL;
+	free(nodeToRemove); //On termine en libèrant la mémoire de l'élément à retirer
+}
+
+void RemoveSibling(Tree *node)
+{
+	if (node == NULL)
+	{
+		printf("ERREUR : le noeud passe en parametre n'existe pas !\n");
+		return NULL;
+	}
+
+	Tree *nodeToRemove = node->sibling;
+
+	if (nodeToRemove == NULL)
+	{
+		printf("ERREUR : le noeud passe en parametre n'a pas de sibling !\n");
+		return NULL;
+	}
+
+	//Si l'élément que l'on retire a un sibling, ce sibling devient le sibling de node.
+	if (nodeToRemove->sibling != NULL)
+		node->sibling = nodeToRemove->sibling;
+	//Sinon, le node n'a juste pas de sibling
+	else
+		node->sibling = NULL;
+
+	//Si l'élément à retirer n'a pas d'enfant, il n'y a rien d'autre à faire.
+	if (nodeToRemove->child == NULL)
+	{
+		free(nodeToRemove);
+		return NULL;
+	}
+	//Sinon, il faut link le premier enfant de nodeToRemove en tant que sibling du dernier enfant de node.
+	else if (node->child == NULL)
+	{
+		node->child = nodeToRemove->child;
+	}
+	else
+	{
+		Tree *nodeToLink = node->child;
+		while (nodeToLink->sibling != NULL)
+		{
+			nodeToLink = nodeToLink->sibling;
+		}
+
+		nodeToLink->sibling = nodeToRemove->child;
+	}
+
+	free(nodeToRemove);
+}
+
 /*
 void insertChildToParent(Tree *parent, Tree *newChild, int nPos)
-{
-
-}
-
-void removeFirstChildFromParent(*Tree *parent)
-{
-
-}
-
-void removeChildFromParent(*Tree *parent, int nPos)
-{
-
-}
-
-void clearTree(Tree *pTree)
 {
 
 }

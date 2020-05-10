@@ -21,10 +21,10 @@ extern void InsertFirstChildToParent(Tree *parent, Tree *newChild);
 extern int GetTreeSize(Tree *node);
 extern int GetTreeHeight(Tree *tree);
 
+extern void RemoveFirstChild(Tree *parent);
+extern void RemoveSibling(Tree *node);
 //TO DO
 extern void InsertSiblingToParent(Tree *parent, Tree *newSibling, int nPos);
-extern void RemoveFirstChildFromParent(Tree *parent); 
-extern void RemoveChildFromParent(Tree *parent, int nPos);
 extern void ListTreeChild(Tree *tree);
 
 /*
