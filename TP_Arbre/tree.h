@@ -4,11 +4,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "style.h"
+#include "binarytree.h"
 
 //Structure d'arbre. Pointe vers le premier enfant (s'il existe) et le frère (s'il existe)
 typedef struct Tree
 {
-	int value;
+	char value;
 	struct Tree *sibling;
 	struct Tree *child;
 }Tree;
@@ -18,25 +19,18 @@ extern void ClearTree(Tree *treeToClear);
 
 extern void InsertFirstChild(Tree *parent, Tree *newChild);
 
-
 extern int GetTreeSize(Tree *node);
 extern int GetTreeHeight(Tree *tree);
 
 extern void RemoveFirstChild(Tree *parent);
 extern void RemoveSibling(Tree *node);
-//TO DO
+
 extern void InsertSiblingToParent(Tree *parent, Tree *newSibling, int nPos);
 extern void ListTreeChild(Tree *tree);
 
-/*
-Recherches largeur et profondeur
+extern int DepthFirstSearchTree(Tree *tree,char value);
+extern int BreadthFirstSearchTree(Tree *tree,char value);
 
-depthFirstSearch
-breadthFirstSearch
-
-depthFirstSearchChild
-breadthFirstSearchChild
-*/
-
+extern BinaryTree* BinarizeTree(Tree* tree);
 
 #endif // TREE_H_INCLUDED

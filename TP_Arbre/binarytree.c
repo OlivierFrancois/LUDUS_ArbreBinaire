@@ -30,7 +30,7 @@ void ClearBinaryTree(BinaryTree *tree)
 	if (tree->right!=NULL)
 		ClearBinaryTree(tree->right);
 	//et du coup on free l'arbre
-	
+
 	free(tree);
 }
 
@@ -77,6 +77,6 @@ int GetBinaryTreeSize(BinaryTree *tree)
 {
 	if (tree == NULL)
 		return 0;
-	
+
 	return (GetBinaryTreeSize(tree->left) + GetBinaryTreeSize(tree->right) + 1);
 }
