@@ -17,7 +17,7 @@ int main()
 	ChangeColor(color_Blue, color_Black);
 	printf("\n_________________________Fonctions n-aire_________________________\n");
 	ChangeColor(color_White, color_Black);
-	
+
 	ChangeColor(color_Cyan, color_Black);
 	printf("___________Constructions d'arbres\n");
 	ChangeColor(color_White, color_Black);
@@ -41,10 +41,10 @@ int main()
 	printf("\n___________Test de la fonction d'insertion d'enfant\n");
 	ChangeColor(color_White, color_Black);
 
-	InsertFirstChildToParent(tree_A, tree_B);
-	InsertFirstChildToParent(tree_B, tree_D);
-	InsertFirstChildToParent(tree_C, tree_F);
-	InsertFirstChildToParent(tree_F, tree_G);
+	InsertFirstChild(tree_A, tree_B);
+	InsertFirstChild(tree_B, tree_D);
+	InsertFirstChild(tree_C, tree_F);
+	InsertFirstChild(tree_F, tree_G);
 	printf("Done !\n");
 
 	ChangeColor(color_Cyan, color_Black);
@@ -90,12 +90,15 @@ int main()
 
 	printf("Taille de l'arbre A avant clear d'une feuille : %d\n", GetTreeSize(tree_A));
 	ClearTree(tree_F);
-	printf("Taille de l'arbre A apres clear d'une feuille : %d\n", GetTreeSize(tree_A));
+	printf("Taille de l'arbre A apres clear d'une feuille : %d\n\n", GetTreeSize(tree_A));
+
+    system("pause");
+    system("cls");
 
 	ChangeColor(color_Blue, color_Black);
 	printf("\n_________________________Fonctions Binaire_________________________\n");
 	ChangeColor(color_White, color_Black);
-	
+
 	ChangeColor(color_Cyan, color_Black);
 	printf("___________Constructions d'arbres et jointure\n");
 	ChangeColor(color_White, color_Black);
@@ -118,7 +121,7 @@ int main()
     ChangeColor(color_Cyan, color_Black);
     printf("\n___________Test de la fonction de clear\n");
     ChangeColor(color_White, color_Black);
-    
+
     ClearBinaryTree(binaryTree);
     printf("Arbre clear\n");
 

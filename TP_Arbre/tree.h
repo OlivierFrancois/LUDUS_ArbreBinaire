@@ -16,7 +16,7 @@ typedef struct Tree
 extern Tree *CreateTree(char value, Tree *child, Tree *sibling);
 extern void ClearTree(Tree *treeToClear);
 
-extern void InsertFirstChildToParent(Tree *parent, Tree *newChild);
+extern void InsertFirstChild(Tree *parent, Tree *newChild);
 
 
 extern int GetTreeSize(Tree *node);

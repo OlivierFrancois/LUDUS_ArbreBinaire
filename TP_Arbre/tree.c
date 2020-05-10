@@ -60,11 +60,12 @@ void ClearTree(Tree *treeToClear)
 //Description : Insertion en tant que premier enfant dans un arbre
 //Entree : L'arbre parent, le nouvel premier enfant
 //**********************************************************
-void InsertFirstChildToParent(Tree *parent, Tree *newChild)
+void InsertFirstChild(Tree *parent, Tree *newChild)
 {
     if (parent == NULL)
         return NULL;
 
+    //Si le parent a déjà un child, il devient le sibling du nouveau child
     if (parent->child != NULL)
         newChild->sibling = parent->child;
 
@@ -151,6 +152,16 @@ void RemoveFirstChild(Tree *parent)
 		parent->child = nodeToRemove->sibling;
 		nodeToRemove->sibling = NULL;
 		nodeToRemove->child = NULL;
+		free(nodeToRemove);
+		return NULL;
+	}
+	//S'il n'a ni child ni sibling, on peut l'effacer directement.
+	else
+	{
+		parent->child = NULL;
+		nodeToRemove->sibling = NULL;
+		nodeToRemove->child = NULL;
+		free(nodeToRemove);
 		return NULL;
 	}
 
