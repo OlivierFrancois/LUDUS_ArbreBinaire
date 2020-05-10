@@ -3,6 +3,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include "style.h"
 
 //Structure d'arbre. Pointe vers le premier enfant (s'il existe) et le frère (s'il existe)
 typedef struct Tree
@@ -15,16 +16,16 @@ typedef struct Tree
 extern Tree *CreateTree(char value, Tree *child, Tree *sibling);
 extern void ClearTree(Tree *treeToClear);
 
-extern void InsertFirstChildToParent(Tree *parent, Tree *newChild);
+extern void InsertFirstChild(Tree *parent, Tree *newChild);
 
 
 extern int GetTreeSize(Tree *node);
 extern int GetTreeHeight(Tree *tree);
 
+extern void RemoveFirstChild(Tree *parent);
+extern void RemoveSibling(Tree *node);
 //TO DO
 extern void InsertSiblingToParent(Tree *parent, Tree *newSibling, int nPos);
-extern void RemoveFirstChildFromParent(Tree *parent); 
-extern void RemoveChildFromParent(Tree *parent, int nPos);
 extern void ListTreeChild(Tree *tree);
 
 /*
