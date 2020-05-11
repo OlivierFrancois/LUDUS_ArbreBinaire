@@ -31,6 +31,10 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="arbre_binaire_de_recherche.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="arbre_binaire_de_recherche.h" />
 		<Unit filename="binarytree.c">
 			<Option compilerVar="CC" />
 		</Unit>

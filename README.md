@@ -17,6 +17,9 @@ L'encodage chez certaines personnes ne fonctionne pas ; dans le doute essayez de
 
 ____________________________
 
-TO DO :
--> Chacun continue sur sa lancee : Kevin, Fiona et Romain : binaire | Valentin et Olivier : n-aire
--> L'ensemble de ce qui a ete traite dans cette version doit etre mis en forme dans la doc pour le prochain rendu : 07/04/2020
+EXPLICATIONS
+
+Le main.c contient la fonction main, qui va appeler trois fonctions qui illustre la manipulation d'arbres à travers différentes autres fonctions ; il suffit de lancer le programme et de suivre l'avancement de ce dernier en appuyant sur une touche quand demandé.
+
+Ce qui touche aux arbres n-aires a été fait par Valentin et Olivier.
+Ce qui touche aux arbres binaires a été fait par Fiona, Kévin et Romain.
