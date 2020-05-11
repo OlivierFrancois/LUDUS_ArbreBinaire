@@ -1,5 +1,6 @@
 #include "binarytree.h"
 #include "tree.h"
+#include "arbre_binaire_de_recherche.h"
 
 int main()
 {
@@ -69,6 +70,30 @@ int main()
     printf("\n___________Test de la fonction de clear\n");
     ClearBinaryTree(binaryTree);
     printf("Arbre clear\n");
-    
+
+    //Pour les arbres binaires de recherche :
+    printf("Passons aux arbres binaires de recherche..\n");
+
+    NoeudRacine=NULL;
+    NoeudRacine=InsertionArbreBinRecherche(NoeudRacine,5);
+    NoeudRacine=InsertionArbreBinRecherche(NoeudRacine,1);
+    NoeudRacine=InsertionArbreBinRecherche(NoeudRacine,6);
+
+    int nEntier;
+    printf("Veuillez entrer un nombre pour savoir si il est dans l'arbre binaire de recherche.\n");
+    fflush(stdin);
+    scanf("%d",&nEntier);
+    fflush(stdin);
+    if (RechercheArbreBin(NoeudRacine,nEntier)==1)
+    {
+        printf("L'entier %d est bien dans l'arbre binaire de recherche.\n",nEntier);
+    }
+    else
+    {
+        printf("L'entier %d n'est pas dans l'arbre binaire de recherche.\n",nEntier);
+    }
+
+    NettoyerArbreBin(NoeudRacine);
+
     return 0;
 }
