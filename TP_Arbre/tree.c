@@ -382,6 +382,5 @@ BinaryTree* BinarizeTree(Tree* tree)
         binaryTree->right->parent = binaryTree;
     }
 
-
     return binaryTree;
 }
