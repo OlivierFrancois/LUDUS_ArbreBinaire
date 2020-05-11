@@ -2,6 +2,7 @@
 #include "tree.h"
 #include "arbre_binaire_de_recherche.h"
 
+
 int main()
 {
 	/*
@@ -91,6 +92,28 @@ int main()
     else
     {
         printf("L'entier %d n'est pas dans l'arbre binaire de recherche.\n",nEntier);
+    }
+    NettoyerArbreBin(NoeudRacine);
+
+    NoeudRacine=NULL;
+    printf("Passons au tri d'un tableau avec cet arbre.\n");
+    int tTable[10]={5,1,4,2,3,6,8,9,7,0};
+    printf("Voici notre tableau : \n");
+    for (int nI=0; nI<10;nI++)
+    {
+        printf("%d; ",tTable[nI]);
+        NoeudRacine=InsertionArbreBinRecherche(NoeudRacine,tTable[nI]);
+    }
+    printf("\n");
+
+    int *nIndexArbre=malloc(sizeof(int));
+    (*nIndexArbre)=0;
+    RenvoieTriArbreBin(NoeudRacine, tTable,nIndexArbre);
+
+    printf("Voici notre tableau apres le tri: \n");
+    for (int nI=0; nI<10;nI++)
+    {
+        printf("%d; ",tTable[nI]);
     }
 
     NettoyerArbreBin(NoeudRacine);

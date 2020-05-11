@@ -71,3 +71,19 @@ void NettoyerArbreBin(Noeud *pRacine)
 
 	free(pRacine);
 }
+
+
+//int nIndexArbreBinaireRecherche = 0;
+void RenvoieTriArbreBin(Noeud *pRacine, int* tTable,int* nIndexArbreBinaireRecherche)
+{
+    if (pRacine==NULL)
+        return;
+
+    RenvoieTriArbreBin(pRacine->aGauche,tTable, nIndexArbreBinaireRecherche);
+
+    //printf("Index : %d\n",nIndexArbreBinaireRecherche);
+    tTable[*nIndexArbreBinaireRecherche]=pRacine->nValeur;
+    (*nIndexArbreBinaireRecherche)++;
+
+    RenvoieTriArbreBin(pRacine->aDroit,tTable, nIndexArbreBinaireRecherche);
+}

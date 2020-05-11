@@ -20,4 +20,6 @@ int RechercheArbreBin(Noeud* pRacine, int nValeur);
 
 void NettoyerArbreBin(Noeud *pRacine);
 
+void RenvoieTriArbreBin(Noeud *pRacine, int* tTable,int* nIndexArbreBinaireRecherche);
+
 #endif
