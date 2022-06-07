@@ -1,0 +1,5 @@
+#Liste des fichiers à ignorer sur CodeBlocks
+*.exe
+*.o
+*.depend
+*.layout
